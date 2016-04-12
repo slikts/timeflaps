@@ -3,7 +3,7 @@ local _ = require './_util'
 return function(config, _log, global)
   local tf = {}
 
-  _log('config', serpent.block(config, {comment = false}))
+  _log('load config', serpent.block(config, {comment = false}))
 
   function tf.cap_start()
     if global.cap_started then
@@ -84,11 +84,16 @@ return function(config, _log, global)
         game.daytime = 0
       end
 
+      local cap_path = string.format(config.cap_path_format, global.cap_start_tick, global.cap_count)
+      if global.cap_count == 1 then
+        _log('cap path start', cap_path)
+      end
+
       game.take_screenshot{
         position = cam_pos,
         resolution = config.cap_resolution,
         zoom = config.cap_zoom * (config.cap_resolution[2] / config.cap_zoom_base_res_y),
-        path = string.format(config.cap_path_format, global.cap_start_tick, global.cap_count),
+        path = cap_path,
         show_entity_info = config.cap_show_entity_info,
         show_gui = config.cap_show_gui,
       }
@@ -97,6 +102,9 @@ return function(config, _log, global)
     if config.cap_limit > 0 and global.cap_count > config.cap_limit then
       _log('cap limit reached', config.cap_limit)
       tf.cap_stop()
+      if (config.cap_limit_break) then
+        assert(false)
+      end
     end
   end
 

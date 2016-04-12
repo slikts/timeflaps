@@ -16,10 +16,13 @@ remote.add_interface('timeflaps', {
     config[k] = _v
     _log('set config', k, serpent.line(_v))
   end,
+
   pos = function()
-    game.player.print(string.format('player position: { %d, %d }', game.player.position.x, game.player.position.y))
+    game.player.print(string.format('Player position: { %d, %d }', game.player.position.x, game.player.position.y))
   end,
+
   cap_start = tf.cap_start,
+  
   cap_stop = tf.cap_stop,
 })
 

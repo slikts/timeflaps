@@ -1,6 +1,6 @@
 return {
   --[[ The first number placeholder (%d) is for the starting tick of the capture,
-  the second is the order of the captures. %05d formats the number with leading
+  the second is the sequence number. %05d formats the number with leading
   zeroes. The file extension can be .png, .jpg and .gif, but it's recommended to
   use .png because the .jpg quality is very low (high compression). ]]
   cap_path_format = 'timeflaps/tick%d/cap%05d.png',
@@ -54,11 +54,17 @@ return {
   --[[ Use a fixed camera position instead of the camera following the player.
   For example:
   cam_fixed_pos = { 13, -15 },
-  ]]
+  Use `/c remote.call("timeflaps", "pos")` in game console to get the current
+  player position. ]]
   cam_fixed_pos = nil,
 
-  --[[ Print debug information to stdout (start game in a console to see). ]]
+  --[[ Print debug information to stdout (start the game in a console to see). ]]
   debug = true,
+
   --[[ Set to false to disable saving the screenshots (testing). ]]
   cap_save = true,
+
+  --[[ Cause an error after capture limit is reached. Useful for ending a replay
+  when testing capture settings. ]]
+  cap_limit_break = false,
 }
