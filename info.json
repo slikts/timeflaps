@@ -1,0 +1,9 @@
+{
+  "name": "timeflaps",
+  "version": "0.1.0",
+  "title": "timeflaps",
+  "author": "slikts",
+  "homepage": "https://github.com/slikts/timeflaps",
+  "description": "Time to flap",
+  "dependencies": ["base"]
+}
